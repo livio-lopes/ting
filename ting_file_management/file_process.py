@@ -21,11 +21,6 @@ def process(path_file, instance):
         # loading
         instance.enqueue(transform)
         sys.stdout.write(f"{transform}")
-        # print(sys.stdout)
-
-
-# fila_do_bode = Queue()
-# process('statics/arquivo_teste.txt', fila_do_bode)
 
 
 def remove(instance):
@@ -41,3 +36,8 @@ def remove(instance):
 
 def file_metadata(instance, position):
     """Aqui irá sua implementação"""
+    try:
+        metadata = instance.search(position)
+        sys.stdout.write(f'{metadata}')
+    except IndexError:
+        sys.stderr.write("Posição inválida\n")
