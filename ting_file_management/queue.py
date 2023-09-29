@@ -20,11 +20,13 @@ class Queue(AbstractQueue):
 
     def dequeue(self):
         """Aqui irá sua implementação"""
-        self.__length -= 1
-        return self.fifo.pop(0)
+        if self.__length >= 1:
+            self.__length -= 1
+            return self.fifo.pop(0)
+        return None
 
     def search(self, index):
         """Aqui irá sua implementação"""
-        if 0 <= index <= (len(self.fifo)-1):
+        if 0 <= index <= (len(self.fifo) - 1):
             return self.fifo[index]
         raise IndexError("Índice Inválido ou Inexistente")
