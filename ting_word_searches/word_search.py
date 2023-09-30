@@ -16,3 +16,20 @@ def exists_word(word, instance):
 
 def search_by_word(word, instance):
     """Aqui irá sua implementação"""
+    load = []
+    for data in instance.fifo:
+        occorrences = [
+            {"linha": index + 1, "conteudo": phrase}
+            for index, phrase in enumerate(data["linhas_do_arquivo"])
+            if word.lower() in phrase.lower()
+        ]
+        if len(occorrences) == 0:
+            return load
+        load.append(
+            {
+                "palavra": word,
+                "arquivo": data["nome_do_arquivo"],
+                "ocorrencias": occorrences,
+            }
+        )
+    return load
